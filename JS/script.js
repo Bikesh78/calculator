@@ -1,15 +1,15 @@
 function add(num1, num2){
-    displayNumber.textContent = +num1 + +num2;
+    displayNumber.textContent = `${+num1 + +num2}`.substring(0,10);
 }
 function subtract(num1, num2){
-    displayNumber.textContent = +num1 - +num2;
+    displayNumber.textContent = `${+num1 - +num2}`.substring(0,10);
 }
 function multiply(num1, num2){
-    displayNumber.textContent = +num1 * +num2;
+    displayNumber.textContent = `${+num1 * +num2}`.substring(0,10);
 }
 function divide(num1,num2){
-    if(+num2 ===0) alert('Math Error');
-    displayNumber.textContent = +num1 / +num2;
+    if(+num2 ===0) return displayNumber.textContent = 'Math Error';
+    displayNumber.textContent = `${+num1 / +num2}`.substring(0,10);
 }
 let operator = '';
 function operate (num1, operator, num2){
@@ -39,7 +39,7 @@ btnNum.forEach(btnNum => {
 });
 function getInput(e) {
     input += e.target.textContent;
-    displayNumber.textContent = input;
+    displayNumber.textContent = input.substring(0,10);
 }
 const btnDel = document.querySelector('.del');
 btnDel.addEventListener('click',(e) =>{
