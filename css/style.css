@@ -59,7 +59,9 @@ button{
 .display{
     border-radius: 15px;
 }
-.signs{
+.signs,
+.dot,
+.equal{
     background-color: #66c7d0;
 }
 .del{
@@ -71,6 +73,8 @@ button:active{
 .del:active{
     background-color: rgb(224, 59, 59);
 }
-.signs:active{
+.signs:active,
+.del:active,
+.equal:active{
     background-color: #77e7f1;
 }
