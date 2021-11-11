@@ -43,12 +43,22 @@ function getInput(e) {
 }
 const btnDel = document.querySelector('.del');
 btnDel.addEventListener('click',(e) =>{
-    deleteNumber(e);
+    deleteNumber();
 });
-function deleteNumber(e){ //fix the button from deleting when display shows 0 only
-    let temp = input.slice(0,-1);
-    input = temp;
-    displayNumber.textContent = input;
+function deleteNumber(){ 
+    if(displayNumber.textContent === '0'){
+        return;
+    } else{
+        let temp = input.slice(0,-1);
+        input = temp;
+        if (input === ''){
+            displayNumber.textContent = 0;
+        }else {
+            displayNumber.textContent = input;
+        }
+        
+    }
+    
 }
 const btnClear = document.querySelector('.clear');
 btnClear.addEventListener('click',(e) => clearNumber(e));
@@ -88,8 +98,12 @@ function getOperand(e){
         operator = e.target.textContent;
         firstNum = displayNumber.textContent;
     }
-    // console.log(operator);
-    // console.log(firstNum);
-    
-    // console.log(secondNum);
 }
+const numList = ['0','1','2','3','4','5','6','7','8','9'];
+window.addEventListener('keydown',(e) => {
+    console.log(e);
+    if(numList.includes(e.key)){
+        input += e.key;
+        displayNumber.textContent = input;
+    }
+})
