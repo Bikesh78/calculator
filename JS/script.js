@@ -19,10 +19,10 @@ function operate (num1, operator, num2){
     if(operator === '-'){
         return subtract(num1,num2);
     }
-    if(operator === '*'){
+    if(operator === '*' && num2 !== ''){
         return multiply(num1,num2);
     }
-    if(operator === '/'){
+    if(operator === '/' && num2 !== ''){
         return divide(num1,num2);
     }
     
@@ -34,15 +34,15 @@ let input = '';
 
 btnNum.forEach(btnNum => {
     btnNum.addEventListener('click', (e) =>{
-        getInput(e);
+        getInput(e.target.textContent);
     });
 });
-function getInput(e) {
-    input += e.target.textContent;
+function getInput(num) {
+    input += num;
     displayNumber.textContent = input.substring(0,10);
 }
 const btnDel = document.querySelector('.del');
-btnDel.addEventListener('click',(e) =>{
+btnDel.addEventListener('click',() =>{
     deleteNumber();
 });
 function deleteNumber(){ 
@@ -61,16 +61,16 @@ function deleteNumber(){
     
 }
 const btnClear = document.querySelector('.clear');
-btnClear.addEventListener('click',(e) => clearNumber(e));
-function clearNumber(e){
+btnClear.addEventListener('click',() => clearNumber());
+function clearNumber(){
     input = '';
     counter = 0;
     operator = '';
     displayNumber.textContent = 0;
 }
 const btnDot =document.querySelector('.dot');
-btnDot.addEventListener('click', (e) => getDot(e));
-function getDot(e){
+btnDot.addEventListener('click', () => getDot());
+function getDot(){
     if (!input.includes('.')){
         input += '.';
         displayNumber.textContent = input;
@@ -82,28 +82,39 @@ let firstNum = '';
 let secondNum = '';
 btnOperator.forEach(btn => {
     btn.addEventListener('click',(e) => {
-        getOperand(e);
+        getOperand(e.target.textContent);
     });
 });
-function getOperand(e){
+function getOperand(userOperator){
     if (counter === 0){
         firstNum = displayNumber.textContent;
         input = ''; 
-        operator = e.target.textContent; 
+        operator = userOperator; 
         counter++;
     } else if (counter > 0){
-        secondNum = displayNumber.textContent;
+        secondNum = input;
         input = '';
         operate(firstNum,operator,secondNum);
-        operator = e.target.textContent;
+        operator = userOperator;
         firstNum = displayNumber.textContent;
     }
 }
 const numList = ['0','1','2','3','4','5','6','7','8','9'];
+const operatorList = ['+','-','*','/'];
 window.addEventListener('keydown',(e) => {
-    console.log(e);
     if(numList.includes(e.key)){
-        input += e.key;
-        displayNumber.textContent = input;
+        getInput(e.key);
+    }
+    if(e.key === '.'){
+        getDot();
+    }
+    if(e.key === "Backspace"){
+        deleteNumber();
+    }
+    if(operatorList.includes(e.key) || e.key ==="Enter"){
+        getOperand(e.key);
+    }
+    if(e.key === "Escape"){
+        clearNumber();
     }
 })
