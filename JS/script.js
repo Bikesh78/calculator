@@ -1,29 +1,29 @@
-function add(num1, num2){
-    displayNumber.textContent = `${+num1 + +num2}`.substring(0,10);
+function add(firstNum, secondNum){
+    displayNumber.textContent = `${+firstNum + +secondNum}`.substring(0,10);
 }
-function subtract(num1, num2){
-    displayNumber.textContent = `${+num1 - +num2}`.substring(0,10);
+function subtract(firstNum, secondNum){
+    displayNumber.textContent = `${+firstNum - +secondNum}`.substring(0,10);
 }
-function multiply(num1, num2){
-    displayNumber.textContent = `${+num1 * +num2}`.substring(0,10);
+function multiply(firstNum, secondNum){
+    displayNumber.textContent = `${+firstNum * +secondNum}`.substring(0,10);
 }
-function divide(num1,num2){
-    if(+num2 ===0) return displayNumber.textContent = 'Math Error';
-    displayNumber.textContent = `${+num1 / +num2}`.substring(0,10);
+function divide(firstNum,secondNum){
+    if(+secondNum ===0) return displayNumber.textContent = 'Math Error';
+    displayNumber.textContent = `${+firstNum / +secondNum}`.substring(0,10);
 }
 let operator = '';
-function operate (num1, operator, num2){
+function operate (firstNum, operator, secondNum){
     if(operator === '+'){
-        return add(num1,num2);
+        return add(firstNum,secondNum);
     }
     if(operator === '-'){
-        return subtract(num1,num2);
+        return subtract(firstNum,secondNum);
     }
-    if(operator === '*' && num2 !== ''){
-        return multiply(num1,num2);
+    if(operator === '*' && secondNum !== ''){
+        return multiply(firstNum,secondNum);
     }
-    if(operator === '/' && num2 !== ''){
-        return divide(num1,num2);
+    if(operator === '/' && secondNum !== ''){
+        return divide(firstNum,secondNum);
     }
     
 }
